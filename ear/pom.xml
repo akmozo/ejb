@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <name>ejb.ear</name>
+    <groupId>com.akmozo</groupId>
+    <artifactId>ejb.ear</artifactId>
+    <version>0.1</version>
+    <packaging>ear</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>    
+    
+    <dependencies>
+   
+        <dependency>
+            <groupId>com.akmozo</groupId>
+            <artifactId>ejb.api</artifactId>
+            <version>0.1</version>
+            <type>jar</type>       
+        </dependency>
+  
+        <dependency>
+            <groupId>com.akmozo</groupId>
+            <artifactId>ejb.impl</artifactId>
+            <version>0.1</version>
+            <type>ejb</type>       
+        </dependency>
+        
+        <dependency>
+            <groupId>com.akmozo</groupId>
+            <artifactId>ejb.entity</artifactId>
+            <version>0.1</version>
+            <type>ejb</type>       
+        </dependency>
+            
+        <dependency>
+            <groupId>com.akmozo</groupId>
+            <artifactId>ejb.web</artifactId>
+            <version>0.1</version>
+            <type>war</type>     
+        </dependency>  
+    
+    </dependencies>    
+    
+    <build>
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <includeJar>false</includeJar>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <webModule>
+                            <groupId>com.akmozo</groupId>
+                            <artifactId>ejb.web</artifactId>
+                            <contextRoot>ejb-web</contextRoot>
+                            <bundleFileName>web.war</bundleFileName>
+                        </webModule>
+                        <jarModule>
+                            <groupId>com.akmozo</groupId>
+                            <artifactId>ejb.api</artifactId>
+                            <bundleFileName>api.jar</bundleFileName>
+                        </jarModule>
+                        <ejbModule>
+                            <groupId>com.akmozo</groupId>
+                            <artifactId>ejb.impl</artifactId>
+                            <bundleFileName>impl.jar</bundleFileName>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>com.akmozo</groupId>
+                            <artifactId>ejb.entity</artifactId>
+                            <bundleFileName>entity.jar</bundleFileName>
+                        </ejbModule>                        
+                    </modules>	
+                    <version>7</version>
+                </configuration>
+            </plugin>
+        </plugins>
+        
+    </build>
+</project>
